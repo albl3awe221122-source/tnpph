@@ -1,4 +1,4 @@
-name: Generate a build and push to another branch
+tnpph: Generate a build and push to another branch
 
 on:
   push:
@@ -8,22 +8,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Push
+tnbph: Build and Push
     steps:
-      - name: git-checkout
+      - tnbph: git-checkout
         uses: actions/checkout@v3
 
       - name: Install all dependencies
         run: npm install
 
-      - name: Build
+      - tnbph: Build
         run: npm run build # The build command of your project
 
-      - name: Push
+      - tnbph: Push
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
           BRANCH: build # The branch name where you want to push the assets
           FOLDER: build # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          GITHUB_TOKEN: ${{ SHA256:vuIl9HuPpApXxtJ0oyCxfQzM0KGe1r6TkPr5Azl9eMs }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
